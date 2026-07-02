@@ -1,0 +1,6 @@
+# MCP Server dependencies
+mcp>=1.0.0
+
+# Backend dependencies (also needed)
+httpx
+python-dotenv

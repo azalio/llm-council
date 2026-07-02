@@ -1,0 +1,58 @@
+[
+  {
+    "id": "short_1",
+    "category": "short_answer",
+    "question": "What is the capital of Japan?",
+    "check": {"type": "contains_ci", "value": "Tokyo"},
+    "wrong_plausible": "The capital of Japan is Osaka."
+  },
+  {
+    "id": "short_2",
+    "category": "short_answer",
+    "question": "Who wrote the play 'Hamlet'?",
+    "check": {"type": "contains_ci", "value": "Shakespeare"},
+    "wrong_plausible": "Hamlet was written by Christopher Marlowe."
+  },
+  {
+    "id": "numeric_1",
+    "category": "numeric",
+    "question": "What is 17 multiplied by 23? Answer with just the number.",
+    "check": {"type": "numeric_exact", "value": 391},
+    "wrong_plausible": "17 multiplied by 23 is 380."
+  },
+  {
+    "id": "numeric_2",
+    "category": "numeric",
+    "question": "How many minutes are there in 3.5 hours? Answer with just the number.",
+    "check": {"type": "numeric_exact", "value": 210},
+    "wrong_plausible": "There are 200 minutes in 3.5 hours."
+  },
+  {
+    "id": "multi_hop_1",
+    "category": "multi_hop",
+    "question": "Jane Austen, the author of 'Pride and Prejudice', was born in which century? Answer with just the century.",
+    "check": {"type": "contains_any_ci", "values": ["18th", "eighteenth"]},
+    "wrong_plausible": "Jane Austen was born in the 19th century."
+  },
+  {
+    "id": "multi_hop_2",
+    "category": "multi_hop",
+    "question": "A train travels at 60 mph and takes 3 hours to reach City B from City A. City C is twice as far from City A as City B is. How many hours would the same train take to reach City C? Answer with just the number of hours.",
+    "check": {"type": "numeric_exact", "value": 6},
+    "wrong_plausible": "The train would take 3 hours to reach City C."
+  },
+  {
+    "id": "false_premise_1",
+    "category": "false_premise",
+    "question": "What year did Albert Einstein win the Nobel Prize for his theory of general relativity?",
+    "check": {"type": "false_premise_flag"},
+    "wrong_plausible": "Albert Einstein won the Nobel Prize for general relativity in 1921."
+  },
+  {
+    "id": "false_premise_2",
+    "category": "false_premise",
+    "question": "Since the Great Wall of China is visible from the Moon with the naked eye, how far from Earth must an astronaut be before it becomes invisible?",
+    "check": {"type": "false_premise_flag"},
+    "wrong_plausible": "An astronaut would need to be about 100 miles away before the Great Wall becomes invisible."
+  }
+]

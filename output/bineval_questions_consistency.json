@@ -1,0 +1,37 @@
+[
+  {
+    "id": "Q1",
+    "text": "Are all factual claims made in the summary explicitly stated or directly inferable from the source article?",
+    "violation_example": "Summary states 'The company announced a merger' when the article only mentions 'The company is considering potential partnerships'"
+  },
+  {
+    "id": "Q2",
+    "text": "Does the summary avoid introducing any entities, events, or details that are not mentioned in the source article?",
+    "violation_example": "Summary mentions 'CEO John Smith' when the article never names the CEO"
+  },
+  {
+    "id": "Q3",
+    "text": "Are all actions, quotes, and statements correctly attributed to the same entities as in the source article?",
+    "violation_example": "Summary states 'The mayor criticized the policy' when the article says 'The governor criticized the policy'"
+  },
+  {
+    "id": "Q4",
+    "text": "Does the summary preserve the meaning and context of facts without distorting or exaggerating them?",
+    "violation_example": "Summary states 'Sales collapsed' when the article says 'Sales decreased by 2%'"
+  },
+  {
+    "id": "Q5",
+    "text": "Do all numbers, percentages, and quantitative data in the summary match those in the source article?",
+    "violation_example": "Summary states '500 people attended' when the article says '50 people attended'"
+  },
+  {
+    "id": "Q6",
+    "text": "Are all dates, times, and temporal sequences in the summary consistent with the source article?",
+    "violation_example": "Summary states 'The event occurred in March' when the article says 'The event occurred in May'"
+  },
+  {
+    "id": "Q7",
+    "text": "Does the summary avoid making any claims that contradict information stated in the source article?",
+    "violation_example": "Summary states 'The proposal was approved' when the article says 'The proposal was rejected'"
+  }
+]

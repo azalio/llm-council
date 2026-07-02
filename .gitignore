@@ -1,0 +1,39 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Keys and secrets
+.env
+
+# Data files
+data/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Local tooling / agent state (machine-specific, not shared)
+.claude/
+.map/
+.reviews/
+.mcp.json
+
+# Recovery / scratch artifacts
+*.RECOVERED-local-edits
+
+# Benchmark run outputs (curated results are committed explicitly)
+output/*.log
+output/council/
+output/playwright/
+output/*-smoke.json
+output/council-on-benchmark.json
+# Downloaded third-party datasets (re-fetched by scripts on demand)
+output/qags/

@@ -1,0 +1,36 @@
+{
+  "checkable_label_check": {
+    "checked": 3,
+    "mismatches": []
+  },
+  "corpus_size": 5,
+  "gates_reference": "docs/bineval-ab-plan.md",
+  "judge_model": "gpt-5.5",
+  "mode": "live",
+  "repeats": 3,
+  "swap_repeats": 1,
+  "variants": {
+    "binary": {
+      "calls": 60,
+      "scorecard": {
+        "evaluations": 20,
+        "factuality_discrimination_acc": 1.0,
+        "parse_rate": 1.0,
+        "position_bias_flip_rate": 0.0,
+        "self_consistency_flip_rate": 0.0,
+        "winner_for_good_rate": 1.0
+      }
+    },
+    "holistic": {
+      "calls": 20,
+      "scorecard": {
+        "evaluations": 20,
+        "factuality_discrimination_acc": 1.0,
+        "parse_rate": 1.0,
+        "position_bias_flip_rate": 0.0,
+        "self_consistency_flip_rate": 0.0,
+        "winner_for_good_rate": 1.0
+      }
+    }
+  }
+}

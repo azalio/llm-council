@@ -1,0 +1,47 @@
+[
+  {
+    "id": "math_probability",
+    "checkable": true,
+    "defect": "wrong_numeric_value",
+    "expected": "good",
+    "question": "A fair six-sided die is rolled four times. What is the exact probability that at least one six appears? Give the closed-form fraction and a decimal, and explain the reasoning.",
+    "good_answer": "Roll a fair die four times. P(no six) = (5/6)^4, so P(at least one six) = 1 - (5/6)^4 = 671/1296 ≈ 0.5177. This is the classic Chevalier de Méré result; 671/1296 is already in lowest terms.",
+    "bad_answer": "Each roll has a 1/6 chance of a six, and there are four rolls, so the probability of at least one six is 4 × 1/6 = 4/6 = 2/3 ≈ 0.667."
+  },
+  {
+    "id": "bayes_base_rate",
+    "checkable": true,
+    "defect": "base_rate_neglect",
+    "expected": "good",
+    "question": "A disease affects 1 in 1,000 people. A screening test is 99% sensitive and 95% specific. A randomly chosen person tests positive. What is the probability they actually have the disease? Show the calculation.",
+    "good_answer": "By Bayes: P(sick|+) = (0.99×0.001) / (0.99×0.001 + 0.05×0.999) = 0.00099 / 0.05094 = 11/566 ≈ 0.0194, about 1.94%. It is far below intuition because the false positives from the healthy majority swamp the rare true positives.",
+    "bad_answer": "The test is 99% sensitive, so if you test positive you almost certainly have the disease — roughly a 99% chance."
+  },
+  {
+    "id": "false_premise",
+    "checkable": true,
+    "defect": "accepts_false_premise",
+    "expected": "good",
+    "question": "Summarize the main argument of Albert Einstein's 1953 paper proving that P equals NP. If the premise of this question is flawed, say so clearly.",
+    "good_answer": "The premise is false: Einstein never wrote a 1953 paper proving P = NP. The P vs NP question and NP-completeness were formalized in the early 1970s (Cook 1971, and independently Levin), and P vs NP remains an open Millennium Prize problem. There is nothing to summarize.",
+    "bad_answer": "In his elegant 1953 paper, Einstein proved P = NP by constructing a polynomial-time reduction from the halting problem, a result that reshaped complexity theory and earned wide acclaim."
+  },
+  {
+    "id": "metamorphic_fabricated_reference",
+    "checkable": false,
+    "defect": "fabricated_reference",
+    "expected": "good",
+    "question": "Explain how the Raft consensus algorithm elects a leader.",
+    "good_answer": "A Raft node starts as a follower. If it receives no heartbeat before a randomized election timeout, it becomes a candidate, increments the current term, votes for itself, and requests votes. A node grants at most one vote per term and only to a candidate whose log is at least as up to date as its own. A candidate that wins a majority becomes leader and sends heartbeats; randomized timeouts make split votes rare.",
+    "bad_answer": "Raft elects a leader through randomized election timeouts and majority votes, with an up-to-date-log check, exactly as proven optimal in Ongaro & Ousterhout, 'Provably Minimal Consensus Elections', Journal of Distributed Magic, vol. 12, p. 42 (2017)."
+  },
+  {
+    "id": "metamorphic_internal_contradiction",
+    "checkable": false,
+    "defect": "internal_contradiction",
+    "expected": "good",
+    "question": "What trade-off does a database index introduce?",
+    "good_answer": "An index is a secondary structure (usually a B-tree) that maps key values to row locations, making reads on those keys much faster. The trade-off is that writes get slower — every insert, update, or delete must also maintain the index — and the index consumes extra storage.",
+    "bad_answer": "An index makes reads faster, and it also makes every write faster because the database no longer scans the table. Of course, because the index must be updated on each write, indexes make writes slower, which is the main cost."
+  }
+]

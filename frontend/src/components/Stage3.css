@@ -1,0 +1,118 @@
+.stage3 {
+  background: #f0fff0;
+  border-color: #c8e6c8;
+}
+
+.run-status-banner {
+  margin-bottom: 16px;
+  padding: 14px 16px;
+  border-radius: 6px;
+  border: 1px solid #f0c36d;
+  background: #fff8e7;
+}
+
+.council-confidence-banner {
+  margin-bottom: 16px;
+  padding: 14px 16px;
+  border-radius: 6px;
+  border: 1px solid #d9938f;
+  background: #fff0ef;
+}
+
+.council-confidence-banner .run-status-label {
+  color: #9f332c;
+}
+
+.council-confidence-banner .run-status-summary,
+.council-confidence-banner .run-status-detail {
+  color: #6f2a25;
+}
+
+.chairman-attribution-banner {
+  margin-bottom: 16px;
+  padding: 14px 16px;
+  border-radius: 6px;
+  border: 1px solid #d9938f;
+  background: #fff0ef;
+}
+
+.chairman-attribution-banner .run-status-label {
+  color: #9f332c;
+}
+
+.chairman-attribution-banner .run-status-summary,
+.chairman-attribution-banner .run-status-detail {
+  color: #6f2a25;
+}
+
+.run-status-label {
+  color: #8a5a00;
+  font-size: 12px;
+  font-family: monospace;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.run-status-summary {
+  margin-top: 6px;
+  color: #5c4400;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.run-status-detail {
+  margin-top: 8px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  color: #5c4400;
+  font-size: 13px;
+}
+
+.run-status-stage {
+  font-family: monospace;
+  font-weight: 600;
+}
+
+.final-response {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 6px;
+  border: 1px solid #c8e6c8;
+}
+
+.chairman-label {
+  color: #2d8a2d;
+  font-size: 12px;
+  font-family: monospace;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.attribution-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+  color: #355f35;
+  font-size: 12px;
+}
+
+.attribution-key-item {
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #eef8ee;
+  border: 1px solid #c8e6c8;
+}
+
+.attribution-marker {
+  font-family: monospace;
+  font-weight: 700;
+}
+
+.final-text {
+  color: #333;
+  line-height: 1.7;
+  font-size: 15px;
+}

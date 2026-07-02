@@ -1,0 +1,1199 @@
+{
+  "leaderboard": [
+    {
+      "model": "anthropic/claude-opus-4.8",
+      "family": "anthropic",
+      "peer_norm": 0.704,
+      "peer_prompts": 12,
+      "judge_winrate": 0.467,
+      "judge_games": 30,
+      "gen_failures": 0,
+      "avg_latency_ms": 11370,
+      "composite": 0.6208
+    },
+    {
+      "model": "moonshotai/kimi-k2.6",
+      "family": "moonshotai",
+      "peer_norm": 0.604,
+      "peer_prompts": 9,
+      "judge_winrate": 0.625,
+      "judge_games": 12,
+      "gen_failures": 3,
+      "avg_latency_ms": 51284,
+      "composite": 0.6116
+    },
+    {
+      "model": "openai/gpt-5.5",
+      "family": "openai",
+      "peer_norm": 0.632,
+      "peer_prompts": 12,
+      "judge_winrate": 0.438,
+      "judge_games": 24,
+      "gen_failures": 0,
+      "avg_latency_ms": 19050,
+      "composite": 0.5637
+    },
+    {
+      "model": "qwen/qwen3.7-max",
+      "family": "qwen",
+      "peer_norm": 0.58,
+      "peer_prompts": 12,
+      "judge_winrate": 0.524,
+      "judge_games": 21,
+      "gen_failures": 0,
+      "avg_latency_ms": 46270,
+      "composite": 0.5601
+    },
+    {
+      "model": "minimax/minimax-m3",
+      "family": "minimax",
+      "peer_norm": 0.47,
+      "peer_prompts": 12,
+      "judge_winrate": 0.571,
+      "judge_games": 21,
+      "gen_failures": 0,
+      "avg_latency_ms": 32511,
+      "composite": 0.5057
+    },
+    {
+      "model": "google/gemini-3.1-pro-preview",
+      "family": "google",
+      "peer_norm": 0.309,
+      "peer_prompts": 12,
+      "judge_winrate": 0.833,
+      "judge_games": 3,
+      "gen_failures": 0,
+      "avg_latency_ms": 30199,
+      "composite": 0.4928
+    },
+    {
+      "model": "deepseek/deepseek-v4-pro",
+      "family": "deepseek",
+      "peer_norm": 0.44,
+      "peer_prompts": 12,
+      "judge_winrate": 0.583,
+      "judge_games": 12,
+      "gen_failures": 0,
+      "avg_latency_ms": 27898,
+      "composite": 0.4905
+    },
+    {
+      "model": "z-ai/glm-5.1",
+      "family": "z-ai",
+      "peer_norm": 0.462,
+      "peer_prompts": 11,
+      "judge_winrate": 0.375,
+      "judge_games": 12,
+      "gen_failures": 1,
+      "avg_latency_ms": 44041,
+      "composite": 0.4317
+    },
+    {
+      "model": "x-ai/grok-4.3",
+      "family": "xai",
+      "peer_norm": 0.326,
+      "peer_prompts": 12,
+      "judge_winrate": 0.333,
+      "judge_games": 9,
+      "gen_failures": 0,
+      "avg_latency_ms": 8785,
+      "composite": 0.3284
+    }
+  ],
+  "recommendation": {
+    "chairman": "anthropic/claude-opus-4.8",
+    "council": [
+      "moonshotai/kimi-k2.6",
+      "openai/gpt-5.5",
+      "qwen/qwen3.7-max",
+      "minimax/minimax-m3"
+    ],
+    "all_distinct_families": true
+  },
+  "per_prompt": [
+    {
+      "id": "reasoning_logic",
+      "domain": "reasoning",
+      "peer": {
+        "openai/gpt-5.5": {
+          "avg_rank": 4.5,
+          "norm": 0.562,
+          "votes": 6
+        },
+        "anthropic/claude-opus-4.8": {
+          "avg_rank": 1.5,
+          "norm": 0.938,
+          "votes": 6
+        },
+        "x-ai/grok-4.3": {
+          "avg_rank": 7.33,
+          "norm": 0.208,
+          "votes": 6
+        },
+        "deepseek/deepseek-v4-pro": {
+          "avg_rank": 3.0,
+          "norm": 0.75,
+          "votes": 6
+        },
+        "qwen/qwen3.7-max": {
+          "avg_rank": 4.6,
+          "norm": 0.55,
+          "votes": 5
+        },
+        "google/gemini-3.1-pro-preview": {
+          "avg_rank": 5.83,
+          "norm": 0.396,
+          "votes": 6
+        },
+        "z-ai/glm-5.1": {
+          "avg_rank": 6.8,
+          "norm": 0.275,
+          "votes": 5
+        },
+        "moonshotai/kimi-k2.6": {
+          "avg_rank": 3.17,
+          "norm": 0.729,
+          "votes": 6
+        },
+        "minimax/minimax-m3": {
+          "avg_rank": 7.0,
+          "norm": 0.25,
+          "votes": 5
+        }
+      },
+      "judge_top": [
+        "anthropic/claude-opus-4.8",
+        "deepseek/deepseek-v4-pro",
+        "moonshotai/kimi-k2.6",
+        "openai/gpt-5.5"
+      ],
+      "judge_pairs": [
+        {
+          "a": "anthropic/claude-opus-4.8",
+          "b": "deepseek/deepseek-v4-pro",
+          "winner": "tie"
+        },
+        {
+          "a": "moonshotai/kimi-k2.6",
+          "b": "anthropic/claude-opus-4.8",
+          "winner": "tie"
+        },
+        {
+          "a": "anthropic/claude-opus-4.8",
+          "b": "openai/gpt-5.5",
+          "winner": "anthropic/claude-opus-4.8"
+        },
+        {
+          "a": "moonshotai/kimi-k2.6",
+          "b": "deepseek/deepseek-v4-pro",
+          "winner": "tie"
+        },
+        {
+          "a": "deepseek/deepseek-v4-pro",
+          "b": "openai/gpt-5.5",
+          "winner": "deepseek/deepseek-v4-pro"
+        },
+        {
+          "a": "openai/gpt-5.5",
+          "b": "moonshotai/kimi-k2.6",
+          "winner": "moonshotai/kimi-k2.6"
+        }
+      ]
+    },
+    {
+      "id": "reasoning_fermi",
+      "domain": "reasoning",
+      "peer": {
+        "openai/gpt-5.5": {
+          "avg_rank": 1.2,
+          "norm": 0.971,
+          "votes": 5
+        },
+        "anthropic/claude-opus-4.8": {
+          "avg_rank": 4.0,
+          "norm": 0.571,
+          "votes": 5
+        },
+        "x-ai/grok-4.3": {
+          "avg_rank": 2.8,
+          "norm": 0.743,
+          "votes": 5
+        },
+        "deepseek/deepseek-v4-pro": {
+          "avg_rank": 5.5,
+          "norm": 0.357,
+          "votes": 6
+        },
+        "qwen/qwen3.7-max": {
+          "avg_rank": 4.4,
+          "norm": 0.514,
+          "votes": 5
+        },
+        "google/gemini-3.1-pro-preview": {
+          "avg_rank": 6.5,
+          "norm": 0.214,
+          "votes": 4
+        },
+        "z-ai/glm-5.1": {
+          "avg_rank": 3.0,
+          "norm": 0.714,
+          "votes": 4
+        },
+        "minimax/minimax-m3": {
+          "avg_rank": 8.0,
+          "norm": 0.0,
+          "votes": 4
+        }
+      },
+      "judge_top": [
+        "openai/gpt-5.5",
+        "x-ai/grok-4.3",
+        "z-ai/glm-5.1",
+        "anthropic/claude-opus-4.8"
+      ],
+      "judge_pairs": [
+        {
+          "a": "openai/gpt-5.5",
+          "b": "x-ai/grok-4.3",
+          "winner": "openai/gpt-5.5"
+        },
+        {
+          "a": "z-ai/glm-5.1",
+          "b": "openai/gpt-5.5",
+          "winner": "openai/gpt-5.5"
+        },
+        {
+          "a": "openai/gpt-5.5",
+          "b": "anthropic/claude-opus-4.8",
+          "winner": "openai/gpt-5.5"
+        },
+        {
+          "a": "z-ai/glm-5.1",
+          "b": "x-ai/grok-4.3",
+          "winner": "z-ai/glm-5.1"
+        },
+        {
+          "a": "x-ai/grok-4.3",
+          "b": "anthropic/claude-opus-4.8",
+          "winner": "x-ai/grok-4.3"
+        },
+        {
+          "a": "anthropic/claude-opus-4.8",
+          "b": "z-ai/glm-5.1",
+          "winner": "anthropic/claude-opus-4.8"
+        }
+      ]
+    },
+    {
+      "id": "code_implement",
+      "domain": "code",
+      "peer": {
+        "openai/gpt-5.5": {
+          "avg_rank": 2.8,
+          "norm": 0.743,
+          "votes": 5
+        },
+        "anthropic/claude-opus-4.8": {
+          "avg_rank": 1.8,
+          "norm": 0.886,
+          "votes": 5
+        },
+        "x-ai/grok-4.3": {
+          "avg_rank": 6.0,
+          "norm": 0.286,
+          "votes": 4
+        },
+        "deepseek/deepseek-v4-pro": {
+          "avg_rank": 3.0,
+          "norm": 0.714,
+          "votes": 5
+        },
+        "qwen/qwen3.7-max": {
+          "avg_rank": 3.25,
+          "norm": 0.679,
+          "votes": 4
+        },
+        "google/gemini-3.1-pro-preview": {
+          "avg_rank": 7.6,
+          "norm": 0.057,
+          "votes": 5
+        },
+        "z-ai/glm-5.1": {
+          "avg_rank": 4.6,
+          "norm": 0.486,
+          "votes": 5
+        },
+        "minimax/minimax-m3": {
+          "avg_rank": 7.5,
+          "norm": 0.071,
+          "votes": 4
+        }
+      },
+      "judge_top": [
+        "anthropic/claude-opus-4.8",
+        "openai/gpt-5.5",
+        "deepseek/deepseek-v4-pro",
+        "qwen/qwen3.7-max"
+      ],
+      "judge_pairs": [
+        {
+          "a": "anthropic/claude-opus-4.8",
+          "b": "openai/gpt-5.5",
+          "winner": "anthropic/claude-opus-4.8"
+        },
+        {
+          "a": "deepseek/deepseek-v4-pro",
+          "b": "anthropic/claude-opus-4.8",
+          "winner": "tie"
+        },
+        {
+          "a": "anthropic/claude-opus-4.8",
+          "b": "qwen/qwen3.7-max",
+          "winner": "anthropic/claude-opus-4.8"
+        },
+        {
+          "a": "deepseek/deepseek-v4-pro",
+          "b": "openai/gpt-5.5",
+          "winner": "deepseek/deepseek-v4-pro"
+        },
+        {
+          "a": "openai/gpt-5.5",
+          "b": "qwen/qwen3.7-max",
+          "winner": "openai/gpt-5.5"
+        },
+        {
+          "a": "qwen/qwen3.7-max",
+          "b": "deepseek/deepseek-v4-pro",
+          "winner": "qwen/qwen3.7-max"
+        }
+      ]
+    },
+    {
+      "id": "code_debug",
+      "domain": "code",
+      "peer": {
+        "openai/gpt-5.5": {
+          "avg_rank": 3.67,
+          "norm": 0.667,
+          "votes": 6
+        },
+        "anthropic/claude-opus-4.8": {
+          "avg_rank": 3.33,
+          "norm": 0.708,
+          "votes": 6
+        },
+        "x-ai/grok-4.3": {
+          "avg_rank": 5.0,
+          "norm": 0.5,
+          "votes": 6
+        },
+        "deepseek/deepseek-v4-pro": {
+          "avg_rank": 9.0,
+          "norm": 0.0,
+          "votes": 6
+        },
+        "qwen/qwen3.7-max": {
+          "avg_rank": 3.29,
+          "norm": 0.714,
+          "votes": 7
+        },
+        "google/gemini-3.1-pro-preview": {
+          "avg_rank": 3.71,
+          "norm": 0.661,
+          "votes": 7
+        },
+        "z-ai/glm-5.1": {
+          "avg_rank": 5.71,
+          "norm": 0.411,
+          "votes": 7
+        },
+        "moonshotai/kimi-k2.6": {
+          "avg_rank": 3.75,
+          "norm": 0.656,
+          "votes": 8
+        },
+        "minimax/minimax-m3": {
+          "avg_rank": 5.86,
+          "norm": 0.393,
+          "votes": 7
+        }
+      },
+      "judge_top": [
+        "qwen/qwen3.7-max",
+        "anthropic/claude-opus-4.8",
+        "openai/gpt-5.5",
+        "google/gemini-3.1-pro-preview"
+      ],
+      "judge_pairs": [
+        {
+          "a": "qwen/qwen3.7-max",
+          "b": "anthropic/claude-opus-4.8",
+          "winner": "qwen/qwen3.7-max"
+        },
+        {
+          "a": "openai/gpt-5.5",
+          "b": "qwen/qwen3.7-max",
+          "winner": "qwen/qwen3.7-max"
+        },
+        {
+          "a": "qwen/qwen3.7-max",
+          "b": "google/gemini-3.1-pro-preview",
+          "winner": "tie"
+        },
+        {
+          "a": "openai/gpt-5.5",
+          "b": "anthropic/claude-opus-4.8",
+          "winner": "openai/gpt-5.5"
+        },
+        {
+          "a": "anthropic/claude-opus-4.8",
+          "b": "google/gemini-3.1-pro-preview",
+          "winner": "google/gemini-3.1-pro-preview"
+        },
+        {
+          "a": "google/gemini-3.1-pro-preview",
+          "b": "openai/gpt-5.5",
+          "winner": "google/gemini-3.1-pro-preview"
+        }
+      ]
+    },
+    {
+      "id": "math_exact",
+      "domain": "math",
+      "peer": {
+        "openai/gpt-5.5": {
+          "avg_rank": 6.43,
+          "norm": 0.321,
+          "votes": 7
+        },
+        "anthropic/claude-opus-4.8": {
+          "avg_rank": 3.14,
+          "norm": 0.732,
+          "votes": 7
+        },
+        "x-ai/grok-4.3": {
+          "avg_rank": 5.71,
+          "norm": 0.411,
+          "votes": 7
+        },
+        "deepseek/deepseek-v4-pro": {
+          "avg_rank": 7.0,
+          "norm": 0.25,
+          "votes": 7
+        },
+        "qwen/qwen3.7-max": {
+          "avg_rank": 2.71,
+          "norm": 0.786,
+          "votes": 7
+        },
+        "google/gemini-3.1-pro-preview": {
+          "avg_rank": 6.0,
+          "norm": 0.375,
+          "votes": 7
+        },
+        "z-ai/glm-5.1": {
+          "avg_rank": 6.86,
+          "norm": 0.268,
+          "votes": 7
+        },
+        "moonshotai/kimi-k2.6": {
+          "avg_rank": 3.29,
+          "norm": 0.714,
+          "votes": 7
+        },
+        "minimax/minimax-m3": {
+          "avg_rank": 3.5,
+          "norm": 0.688,
+          "votes": 6
+        }
+      },
+      "judge_top": [
+        "qwen/qwen3.7-max",
+        "anthropic/claude-opus-4.8",
+        "moonshotai/kimi-k2.6",
+        "minimax/minimax-m3"
+      ],
+      "judge_pairs": [
+        {
+          "a": "qwen/qwen3.7-max",
+          "b": "anthropic/claude-opus-4.8",
+          "winner": "qwen/qwen3.7-max"
+        },
+        {
+          "a": "moonshotai/kimi-k2.6",
+          "b": "qwen/qwen3.7-max",
+          "winner": "tie"
+        },
+        {
+          "a": "qwen/qwen3.7-max",
+          "b": "minimax/minimax-m3",
+          "winner": "tie"
+        },
+        {
+          "a": "moonshotai/kimi-k2.6",
+          "b": "anthropic/claude-opus-4.8",
+          "winner": "moonshotai/kimi-k2.6"
+        },
+        {
+          "a": "anthropic/claude-opus-4.8",
+          "b": "minimax/minimax-m3",
+          "winner": "tie"
+        },
+        {
+          "a": "minimax/minimax-m3",
+          "b": "moonshotai/kimi-k2.6",
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "id": "math_probability",
+      "domain": "math",
+      "peer": {
+        "openai/gpt-5.5": {
+          "avg_rank": 7.0,
+          "norm": 0.25,
+          "votes": 6
+        },
+        "anthropic/claude-opus-4.8": {
+          "avg_rank": 4.5,
+          "norm": 0.562,
+          "votes": 6
+        },
+        "x-ai/grok-4.3": {
+          "avg_rank": 4.14,
+          "norm": 0.607,
+          "votes": 7
+        },
+        "deepseek/deepseek-v4-pro": {
+          "avg_rank": 7.17,
+          "norm": 0.229,
+          "votes": 6
+        },
+        "qwen/qwen3.7-max": {
+          "avg_rank": 3.67,
+          "norm": 0.667,
+          "votes": 6
+        },
+        "google/gemini-3.1-pro-preview": {
+          "avg_rank": 6.5,
+          "norm": 0.312,
+          "votes": 6
+        },
+        "z-ai/glm-5.1": {
+          "avg_rank": 3.86,
+          "norm": 0.643,
+          "votes": 7
+        },
+        "moonshotai/kimi-k2.6": {
+          "avg_rank": 3.14,
+          "norm": 0.732,
+          "votes": 7
+        },
+        "minimax/minimax-m3": {
+          "avg_rank": 6.83,
+          "norm": 0.271,
+          "votes": 6
+        }
+      },
+      "judge_top": [
+        "moonshotai/kimi-k2.6",
+        "qwen/qwen3.7-max",
+        "z-ai/glm-5.1",
+        "x-ai/grok-4.3"
+      ],
+      "judge_pairs": [
+        {
+          "a": "moonshotai/kimi-k2.6",
+          "b": "qwen/qwen3.7-max",
+          "winner": "moonshotai/kimi-k2.6"
+        },
+        {
+          "a": "z-ai/glm-5.1",
+          "b": "moonshotai/kimi-k2.6",
+          "winner": "moonshotai/kimi-k2.6"
+        },
+        {
+          "a": "moonshotai/kimi-k2.6",
+          "b": "x-ai/grok-4.3",
+          "winner": "tie"
+        },
+        {
+          "a": "z-ai/glm-5.1",
+          "b": "qwen/qwen3.7-max",
+          "winner": "z-ai/glm-5.1"
+        },
+        {
+          "a": "qwen/qwen3.7-max",
+          "b": "x-ai/grok-4.3",
+          "winner": "x-ai/grok-4.3"
+        },
+        {
+          "a": "x-ai/grok-4.3",
+          "b": "z-ai/glm-5.1",
+          "winner": "tie"
+        }
+      ]
+    },
+    {
+      "id": "factual_concept",
+      "domain": "factuality",
+      "peer": {
+        "openai/gpt-5.5": {
+          "avg_rank": 1.5,
+          "norm": 0.938,
+          "votes": 4
+        },
+        "anthropic/claude-opus-4.8": {
+          "avg_rank": 4.5,
+          "norm": 0.562,
+          "votes": 4
+        },
+        "x-ai/grok-4.3": {
+          "avg_rank": 8.33,
+          "norm": 0.083,
+          "votes": 3
+        },
+        "deepseek/deepseek-v4-pro": {
+          "avg_rank": 5.25,
+          "norm": 0.469,
+          "votes": 4
+        },
+        "qwen/qwen3.7-max": {
+          "avg_rank": 7.0,
+          "norm": 0.25,
+          "votes": 3
+        },
+        "google/gemini-3.1-pro-preview": {
+          "avg_rank": 8.25,
+          "norm": 0.094,
+          "votes": 4
+        },
+        "z-ai/glm-5.1": {
+          "avg_rank": 3.75,
+          "norm": 0.656,
+          "votes": 4
+        },
+        "moonshotai/kimi-k2.6": {
+          "avg_rank": 3.25,
+          "norm": 0.719,
+          "votes": 4
+        },
+        "minimax/minimax-m3": {
+          "avg_rank": 2.5,
+          "norm": 0.812,
+          "votes": 4
+        }
+      },
+      "judge_top": [
+        "openai/gpt-5.5",
+        "minimax/minimax-m3",
+        "moonshotai/kimi-k2.6",
+        "z-ai/glm-5.1"
+      ],
+      "judge_pairs": [
+        {
+          "a": "openai/gpt-5.5",
+          "b": "minimax/minimax-m3",
+          "winner": "openai/gpt-5.5"
+        },
+        {
+          "a": "moonshotai/kimi-k2.6",
+          "b": "openai/gpt-5.5",
+          "winner": "openai/gpt-5.5"
+        },
+        {
+          "a": "openai/gpt-5.5",
+          "b": "z-ai/glm-5.1",
+          "winner": "openai/gpt-5.5"
+        },
+        {
+          "a": "moonshotai/kimi-k2.6",
+          "b": "minimax/minimax-m3",
+          "winner": "moonshotai/kimi-k2.6"
+        },
+        {
+          "a": "minimax/minimax-m3",
+          "b": "z-ai/glm-5.1",
+          "winner": "minimax/minimax-m3"
+        },
+        {
+          "a": "z-ai/glm-5.1",
+          "b": "moonshotai/kimi-k2.6",
+          "winner": "z-ai/glm-5.1"
+        }
+      ]
+    },
+    {
+      "id": "factual_uncertainty",
+      "domain": "factuality",
+      "peer": {
+        "openai/gpt-5.5": {
+          "avg_rank": 3.4,
+          "norm": 0.7,
+          "votes": 5
+        },
+        "anthropic/claude-opus-4.8": {
+          "avg_rank": 2.6,
+          "norm": 0.8,
+          "votes": 5
+        },
+        "x-ai/grok-4.3": {
+          "avg_rank": 8.25,
+          "norm": 0.094,
+          "votes": 4
+        },
+        "deepseek/deepseek-v4-pro": {
+          "avg_rank": 7.5,
+          "norm": 0.188,
+          "votes": 4
+        },
+        "qwen/qwen3.7-max": {
+          "avg_rank": 2.75,
+          "norm": 0.781,
+          "votes": 4
+        },
+        "google/gemini-3.1-pro-preview": {
+          "avg_rank": 8.2,
+          "norm": 0.1,
+          "votes": 5
+        },
+        "z-ai/glm-5.1": {
+          "avg_rank": 5.8,
+          "norm": 0.4,
+          "votes": 5
+        },
+        "moonshotai/kimi-k2.6": {
+          "avg_rank": 4.2,
+          "norm": 0.6,
+          "votes": 5
+        },
+        "minimax/minimax-m3": {
+          "avg_rank": 3.6,
+          "norm": 0.675,
+          "votes": 5
+        }
+      },
+      "judge_top": [
+        "anthropic/claude-opus-4.8",
+        "qwen/qwen3.7-max",
+        "openai/gpt-5.5",
+        "minimax/minimax-m3"
+      ],
+      "judge_pairs": [
+        {
+          "a": "anthropic/claude-opus-4.8",
+          "b": "qwen/qwen3.7-max",
+          "winner": "qwen/qwen3.7-max"
+        },
+        {
+          "a": "openai/gpt-5.5",
+          "b": "anthropic/claude-opus-4.8",
+          "winner": "anthropic/claude-opus-4.8"
+        },
+        {
+          "a": "anthropic/claude-opus-4.8",
+          "b": "minimax/minimax-m3",
+          "winner": "minimax/minimax-m3"
+        },
+        {
+          "a": "openai/gpt-5.5",
+          "b": "qwen/qwen3.7-max",
+          "winner": "qwen/qwen3.7-max"
+        },
+        {
+          "a": "qwen/qwen3.7-max",
+          "b": "minimax/minimax-m3",
+          "winner": "minimax/minimax-m3"
+        },
+        {
+          "a": "minimax/minimax-m3",
+          "b": "openai/gpt-5.5",
+          "winner": "minimax/minimax-m3"
+        }
+      ]
+    },
+    {
+      "id": "writing_explain",
+      "domain": "writing",
+      "peer": {
+        "openai/gpt-5.5": {
+          "avg_rank": 3.14,
+          "norm": 0.694,
+          "votes": 7
+        },
+        "anthropic/claude-opus-4.8": {
+          "avg_rank": 3.57,
+          "norm": 0.633,
+          "votes": 7
+        },
+        "x-ai/grok-4.3": {
+          "avg_rank": 4.17,
+          "norm": 0.548,
+          "votes": 6
+        },
+        "deepseek/deepseek-v4-pro": {
+          "avg_rank": 5.5,
+          "norm": 0.357,
+          "votes": 6
+        },
+        "qwen/qwen3.7-max": {
+          "avg_rank": 6.17,
+          "norm": 0.262,
+          "votes": 6
+        },
+        "google/gemini-3.1-pro-preview": {
+          "avg_rank": 5.0,
+          "norm": 0.429,
+          "votes": 7
+        },
+        "moonshotai/kimi-k2.6": {
+          "avg_rank": 4.67,
+          "norm": 0.476,
+          "votes": 6
+        },
+        "minimax/minimax-m3": {
+          "avg_rank": 3.83,
+          "norm": 0.595,
+          "votes": 6
+        }
+      },
+      "judge_top": [
+        "openai/gpt-5.5",
+        "anthropic/claude-opus-4.8",
+        "minimax/minimax-m3",
+        "x-ai/grok-4.3"
+      ],
+      "judge_pairs": [
+        {
+          "a": "openai/gpt-5.5",
+          "b": "anthropic/claude-opus-4.8",
+          "winner": "openai/gpt-5.5"
+        },
+        {
+          "a": "minimax/minimax-m3",
+          "b": "openai/gpt-5.5",
+          "winner": "tie"
+        },
+        {
+          "a": "openai/gpt-5.5",
+          "b": "x-ai/grok-4.3",
+          "winner": "openai/gpt-5.5"
+        },
+        {
+          "a": "minimax/minimax-m3",
+          "b": "anthropic/claude-opus-4.8",
+          "winner": "minimax/minimax-m3"
+        },
+        {
+          "a": "anthropic/claude-opus-4.8",
+          "b": "x-ai/grok-4.3",
+          "winner": "anthropic/claude-opus-4.8"
+        },
+        {
+          "a": "x-ai/grok-4.3",
+          "b": "minimax/minimax-m3",
+          "winner": "minimax/minimax-m3"
+        }
+      ]
+    },
+    {
+      "id": "instruction_following",
+      "domain": "instruction_following",
+      "peer": {
+        "openai/gpt-5.5": {
+          "avg_rank": 1.75,
+          "norm": 0.906,
+          "votes": 4
+        },
+        "anthropic/claude-opus-4.8": {
+          "avg_rank": 4.5,
+          "norm": 0.562,
+          "votes": 4
+        },
+        "x-ai/grok-4.3": {
+          "avg_rank": 9.0,
+          "norm": 0.0,
+          "votes": 3
+        },
+        "deepseek/deepseek-v4-pro": {
+          "avg_rank": 4.75,
+          "norm": 0.531,
+          "votes": 4
+        },
+        "qwen/qwen3.7-max": {
+          "avg_rank": 7.5,
+          "norm": 0.188,
+          "votes": 4
+        },
+        "google/gemini-3.1-pro-preview": {
+          "avg_rank": 5.5,
+          "norm": 0.438,
+          "votes": 4
+        },
+        "z-ai/glm-5.1": {
+          "avg_rank": 3.33,
+          "norm": 0.708,
+          "votes": 3
+        },
+        "moonshotai/kimi-k2.6": {
+          "avg_rank": 5.75,
+          "norm": 0.406,
+          "votes": 4
+        },
+        "minimax/minimax-m3": {
+          "avg_rank": 2.5,
+          "norm": 0.812,
+          "votes": 4
+        }
+      },
+      "judge_top": [
+        "openai/gpt-5.5",
+        "minimax/minimax-m3",
+        "z-ai/glm-5.1",
+        "anthropic/claude-opus-4.8"
+      ],
+      "judge_pairs": [
+        {
+          "a": "openai/gpt-5.5",
+          "b": "minimax/minimax-m3",
+          "winner": "minimax/minimax-m3"
+        },
+        {
+          "a": "z-ai/glm-5.1",
+          "b": "openai/gpt-5.5",
+          "winner": "z-ai/glm-5.1"
+        },
+        {
+          "a": "openai/gpt-5.5",
+          "b": "anthropic/claude-opus-4.8",
+          "winner": "anthropic/claude-opus-4.8"
+        },
+        {
+          "a": "z-ai/glm-5.1",
+          "b": "minimax/minimax-m3",
+          "winner": "minimax/minimax-m3"
+        },
+        {
+          "a": "minimax/minimax-m3",
+          "b": "anthropic/claude-opus-4.8",
+          "winner": "minimax/minimax-m3"
+        },
+        {
+          "a": "anthropic/claude-opus-4.8",
+          "b": "z-ai/glm-5.1",
+          "winner": "anthropic/claude-opus-4.8"
+        }
+      ]
+    },
+    {
+      "id": "multilingual_ru",
+      "domain": "multilingual",
+      "peer": {
+        "openai/gpt-5.5": {
+          "avg_rank": 5.17,
+          "norm": 0.405,
+          "votes": 6
+        },
+        "anthropic/claude-opus-4.8": {
+          "avg_rank": 3.8,
+          "norm": 0.6,
+          "votes": 5
+        },
+        "x-ai/grok-4.3": {
+          "avg_rank": 6.2,
+          "norm": 0.257,
+          "votes": 5
+        },
+        "deepseek/deepseek-v4-pro": {
+          "avg_rank": 2.4,
+          "norm": 0.8,
+          "votes": 5
+        },
+        "qwen/qwen3.7-max": {
+          "avg_rank": 2.4,
+          "norm": 0.8,
+          "votes": 5
+        },
+        "google/gemini-3.1-pro-preview": {
+          "avg_rank": 5.5,
+          "norm": 0.357,
+          "votes": 6
+        },
+        "z-ai/glm-5.1": {
+          "avg_rank": 7.33,
+          "norm": 0.095,
+          "votes": 6
+        },
+        "minimax/minimax-m3": {
+          "avg_rank": 3.6,
+          "norm": 0.629,
+          "votes": 5
+        }
+      },
+      "judge_top": [
+        "deepseek/deepseek-v4-pro",
+        "qwen/qwen3.7-max",
+        "minimax/minimax-m3",
+        "anthropic/claude-opus-4.8"
+      ],
+      "judge_pairs": [
+        {
+          "a": "deepseek/deepseek-v4-pro",
+          "b": "qwen/qwen3.7-max",
+          "winner": "deepseek/deepseek-v4-pro"
+        },
+        {
+          "a": "minimax/minimax-m3",
+          "b": "deepseek/deepseek-v4-pro",
+          "winner": "deepseek/deepseek-v4-pro"
+        },
+        {
+          "a": "deepseek/deepseek-v4-pro",
+          "b": "anthropic/claude-opus-4.8",
+          "winner": "deepseek/deepseek-v4-pro"
+        },
+        {
+          "a": "minimax/minimax-m3",
+          "b": "qwen/qwen3.7-max",
+          "winner": "qwen/qwen3.7-max"
+        },
+        {
+          "a": "qwen/qwen3.7-max",
+          "b": "anthropic/claude-opus-4.8",
+          "winner": "qwen/qwen3.7-max"
+        },
+        {
+          "a": "anthropic/claude-opus-4.8",
+          "b": "minimax/minimax-m3",
+          "winner": "anthropic/claude-opus-4.8"
+        }
+      ]
+    },
+    {
+      "id": "false_premise",
+      "domain": "abstention",
+      "peer": {
+        "openai/gpt-5.5": {
+          "avg_rank": 5.62,
+          "norm": 0.422,
+          "votes": 8
+        },
+        "anthropic/claude-opus-4.8": {
+          "avg_rank": 1.88,
+          "norm": 0.891,
+          "votes": 8
+        },
+        "x-ai/grok-4.3": {
+          "avg_rank": 7.62,
+          "norm": 0.172,
+          "votes": 8
+        },
+        "deepseek/deepseek-v4-pro": {
+          "avg_rank": 3.88,
+          "norm": 0.641,
+          "votes": 8
+        },
+        "qwen/qwen3.7-max": {
+          "avg_rank": 2.88,
+          "norm": 0.766,
+          "votes": 8
+        },
+        "google/gemini-3.1-pro-preview": {
+          "avg_rank": 6.75,
+          "norm": 0.281,
+          "votes": 8
+        },
+        "z-ai/glm-5.1": {
+          "avg_rank": 5.57,
+          "norm": 0.429,
+          "votes": 7
+        },
+        "moonshotai/kimi-k2.6": {
+          "avg_rank": 5.75,
+          "norm": 0.406,
+          "votes": 8
+        },
+        "minimax/minimax-m3": {
+          "avg_rank": 5.43,
+          "norm": 0.446,
+          "votes": 7
+        }
+      },
+      "judge_top": [
+        "anthropic/claude-opus-4.8",
+        "qwen/qwen3.7-max",
+        "deepseek/deepseek-v4-pro",
+        "minimax/minimax-m3"
+      ],
+      "judge_pairs": [
+        {
+          "a": "anthropic/claude-opus-4.8",
+          "b": "qwen/qwen3.7-max",
+          "winner": "anthropic/claude-opus-4.8"
+        },
+        {
+          "a": "deepseek/deepseek-v4-pro",
+          "b": "anthropic/claude-opus-4.8",
+          "winner": "anthropic/claude-opus-4.8"
+        },
+        {
+          "a": "anthropic/claude-opus-4.8",
+          "b": "minimax/minimax-m3",
+          "winner": "anthropic/claude-opus-4.8"
+        },
+        {
+          "a": "deepseek/deepseek-v4-pro",
+          "b": "qwen/qwen3.7-max",
+          "winner": "tie"
+        },
+        {
+          "a": "qwen/qwen3.7-max",
+          "b": "minimax/minimax-m3",
+          "winner": "qwen/qwen3.7-max"
+        },
+        {
+          "a": "minimax/minimax-m3",
+          "b": "deepseek/deepseek-v4-pro",
+          "winner": "minimax/minimax-m3"
+        }
+      ]
+    }
+  ],
+  "config": {
+    "candidates": [
+      "openai/gpt-5.5",
+      "anthropic/claude-opus-4.8",
+      "x-ai/grok-4.3",
+      "deepseek/deepseek-v4-pro",
+      "qwen/qwen3.7-max",
+      "google/gemini-3.1-pro-preview",
+      "z-ai/glm-5.1",
+      "moonshotai/kimi-k2.6",
+      "minimax/minimax-m3"
+    ],
+    "neutral_judge": "openai/gpt-5.4",
+    "prompts": [
+      "reasoning_logic",
+      "reasoning_fermi",
+      "code_implement",
+      "code_debug",
+      "math_exact",
+      "math_probability",
+      "factual_concept",
+      "factual_uncertainty",
+      "writing_explain",
+      "instruction_following",
+      "multilingual_ru",
+      "false_premise"
+    ],
+    "judge_top_k": 4,
+    "composite_weights": {
+      "peer_norm": 0.65,
+      "judge_winrate": 0.35
+    }
+  },
+  "prompt_set": "v1",
+  "wall_clock_seconds": 3092.0,
+  "generated_at": "2026-06-12T09:46:18.715211+00:00"
+}

@@ -1,0 +1,129 @@
+{
+  "ask_council": {
+    "description": "\n    Submit a question to the LLM Council for deliberation.\n\n    Use this when you can block on the full deliberation synchronously. If your\n    MCP client has a short tool-call timeout (e.g. < 2 minutes), use\n    start_council_async + poll_council_task instead.\n\n    The council consists of multiple LLMs that:\n    1. Each provide their own response to your question\n    2. Anonymously rank each other's responses\n    3. A chairman synthesizes the final answer\n\n    mode controls the deliberation policy: auto picks quick, standard, or deep;\n    quick answers simple prompts with the chairman only; standard runs the\n    normal 3-stage council; deep runs the thorough critique/revision workflow.\n\n    When thorough=True, it is treated as a deprecated alias for deep mode when\n    mode is auto:\n    2a. Each model critiques all responses\n    2b. Each model revises its own response based on peer critiques\n    This produces higher-quality answers for complex questions but takes longer.\n\n    Multi-turn conversations: pass conversation_id from a previous call to ask\n    follow-up questions with context. The council will reformulate your follow-up\n    into a standalone question (Stage 0), and the chairman will consider the full\n    conversation history when synthesizing. The response always includes the\n    conversation_id for subsequent calls.\n\n    IMPORTANT \u2014 this tool is stateful across calls: every response ends with a\n    line like \"Council conversation: <id>\". Copy that id and pass it back as\n    conversation_id on your NEXT call in the same conversation. If you drop it\n    (e.g. leave conversation_id empty on what was meant to be a follow-up), the\n    council has no way to detect that and will silently start a brand-new\n    conversation with no memory of this one \u2014 it will not error. If you are\n    not sure whether a conversation_id already exists for this topic, call\n    list_conversations() first to check before asking a follow-up.\n\n    Args:\n        question: The question or topic for the council to discuss. Must be\n                  self-contained with full context, as the council has no memory\n                  of previous conversations.\n        thorough: If True, run additional critique/revision stages for higher\n                  quality output. Default is False.\n        mode: \"auto\", \"quick\", \"standard\", or \"deep\". Default is auto.\n        conversation_id: Optional ID from a previous council call to continue\n                         the conversation. Leave empty for a new conversation.\n        include_debug: If True, append request diagnostics including request ID,\n                        stage timings, and failed model counts.\n        clarify_when_unclear: If True, first-turn ambiguous questions return one\n                              clarifying question before the full council runs.\n        bypass_cache: If True, force a fresh council run even when a matching\n                      first-turn answer is cached.\n\n    Returns:\n        The chairman's final synthesized answer\n    ",
+    "parameters": {
+      "bypass_cache": {
+        "default": false,
+        "type": "boolean"
+      },
+      "clarify_when_unclear": {
+        "default": false,
+        "type": "boolean"
+      },
+      "conversation_id": {
+        "default": "",
+        "type": "string"
+      },
+      "include_debug": {
+        "default": false,
+        "type": "boolean"
+      },
+      "mode": {
+        "default": "auto",
+        "type": "string"
+      },
+      "question": {
+        "default": "<none>",
+        "type": "string"
+      },
+      "thorough": {
+        "default": false,
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "question"
+    ]
+  },
+  "get_available_models": {
+    "description": "\n    Get list of available models in the current configuration.\n\n    Use this before asking the council if you need to tell the user which\n    models will be consulted, or to sanity-check the deployment's provider.\n\n    Returns:\n        List of council models and chairman model\n    ",
+    "parameters": {},
+    "required": []
+  },
+  "get_conversation": {
+    "description": "\n    Get details of a specific conversation.\n\n    Use this when you already have a conversation_id (from ask_council,\n    start_council_async, or list_conversations) and need the full stored\n    history rather than just the latest answer.\n\n    Args:\n        conversation_id: The ID of the conversation to retrieve\n\n    Returns:\n        Full conversation history including all stages\n    ",
+    "parameters": {
+      "conversation_id": {
+        "default": "<none>",
+        "type": "string"
+      }
+    },
+    "required": [
+      "conversation_id"
+    ]
+  },
+  "get_council_eta": {
+    "description": "\n    Estimate the expected wait time for a council run, from durable statistics.\n\n    Resolves the deliberation mode for the question (same classifier ask_council\n    uses \u2014 typically zero model calls, at most ~2s) and returns a percentile\n    expected-wait estimate from the persisted runs table. The estimate survives\n    process restarts (it is NOT the in-memory rolling window).\n\n    When fewer than the minimum samples have been collected for the resolved mode,\n    expected_wait_seconds is null (basis=\"insufficient_data\") and an advisory\n    fallback_seconds is provided for callers that opt in to a static estimate.\n\n    Args:\n        question: The question you intend to ask the council.\n        mode: \"auto\", \"quick\", \"standard\", or \"deep\". Default \"auto\".\n        thorough: Deprecated alias for deep mode.\n\n    Returns:\n        JSON with expected_wait_seconds (or null), per_stage_estimates,\n        confidence, basis, sample_count, fallback_seconds, note.\n    ",
+    "parameters": {
+      "mode": {
+        "default": "auto",
+        "type": "string"
+      },
+      "question": {
+        "default": "<none>",
+        "type": "string"
+      },
+      "thorough": {
+        "default": false,
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "question"
+    ]
+  },
+  "get_council_metrics": {
+    "description": "\n    Get rolling process-local council KPIs in JSON format.\n\n    Use this to check reliability/latency before deciding whether to retry a\n    degraded run or trust a fresh answer's timing. Counters reset on process\n    restart and are not shared across MCP/backend processes.\n\n    Returns:\n        JSON string with success/degradation counters and stage latency percentiles\n    ",
+    "parameters": {},
+    "required": []
+  },
+  "list_conversations": {
+    "description": "\n    List all saved council conversations.\n\n    Use this when you need a conversation_id to pass to get_conversation, to\n    show the user what past council discussions are available, or to recover\n    when you suspect you lost track of a conversation_id from ask_council /\n    start_council_async (e.g. the user is asking a follow-up but you're not\n    sure which prior conversation_id to pass) \u2014 sorted newest first, so the\n    conversation you want is usually right at the top.\n\n    Returns:\n        List of conversation IDs with creation dates\n    ",
+    "parameters": {},
+    "required": []
+  },
+  "poll_council_task": {
+    "description": "\n    Poll the status of an async council task started with start_council_async.\n\n    Call this every 15-30 seconds until status is \"done\" or \"error\".\n\n    Args:\n        task_id: The task_id returned by start_council_async.\n\n    Returns:\n        JSON with fields:\n          status:          \"pending\" | \"running\" | \"done\" | \"error\"\n          result:          council answer string (present when status==\"done\")\n          error:           error message (present when status==\"error\")\n          elapsed_seconds: seconds since the task was started\n          conversation_id: the conversation this run belongs to, set as soon as\n                            it's known (usually before status==\"done\"). Save\n                            this and pass it as conversation_id on your next\n                            call in the same conversation \u2014 do not rely on\n                            parsing it back out of `result`.\n    ",
+    "parameters": {
+      "task_id": {
+        "default": "<none>",
+        "type": "string"
+      }
+    },
+    "required": [
+      "task_id"
+    ]
+  },
+  "start_council_async": {
+    "description": "\n    Start a council deliberation in the background and return immediately.\n\n    Use this instead of ask_council when the MCP client has a short tool-call\n    timeout (e.g. < 2 minutes). The council runs asynchronously; poll for the\n    result with poll_council_task(task_id).\n\n    Typical flow:\n        response = start_council_async(question=..., mode=\"standard\")\n        task_id  = json.loads(response)[\"task_id\"]\n        # wait ~30 s, then repeat until status == \"done\":\n        result   = poll_council_task(task_id=task_id)\n        conversation_id = result[\"conversation_id\"]  # save this for follow-ups\n\n    IMPORTANT \u2014 this tool is stateful across calls, same as ask_council: save\n    the conversation_id field poll_council_task returns (available as soon as\n    status leaves \"pending\", even before the run finishes) and pass it back on\n    your NEXT call in the same conversation. If you leave conversation_id\n    empty on what was meant to be a follow-up, there is no error \u2014 the council\n    silently starts a brand-new conversation with no memory of the old one.\n\n    Args:\n        question: The question for the council.\n        mode: \"auto\", \"quick\", \"standard\", or \"deep\". Default \"auto\".\n        conversation_id: Optional prior conversation ID for multi-turn context.\n        include_debug: Append request diagnostics to the final result.\n        clarify_when_unclear: Return a clarifying question for ambiguous prompts.\n        bypass_cache: Force a fresh council run, ignore answer cache.\n\n    Returns:\n        JSON: {\"task_id\": \"<uuid>\", \"status\": \"pending\"}\n    ",
+    "parameters": {
+      "bypass_cache": {
+        "default": false,
+        "type": "boolean"
+      },
+      "clarify_when_unclear": {
+        "default": false,
+        "type": "boolean"
+      },
+      "conversation_id": {
+        "default": "",
+        "type": "string"
+      },
+      "include_debug": {
+        "default": false,
+        "type": "boolean"
+      },
+      "mode": {
+        "default": "auto",
+        "type": "string"
+      },
+      "question": {
+        "default": "<none>",
+        "type": "string"
+      }
+    },
+    "required": [
+      "question"
+    ]
+  }
+}

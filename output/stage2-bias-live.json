@@ -1,0 +1,52 @@
+{
+  "cases": [
+    {
+      "counterbalanced": {
+        "distinct_winners": 2,
+        "order_sensitivity": 0.5,
+        "winners": [
+          "ans0",
+          "ans2",
+          "ans0",
+          "ans2"
+        ]
+      },
+      "fixed_order": {
+        "distinct_winners": 2,
+        "order_sensitivity": 0.25,
+        "winners": [
+          "ans2",
+          "ans0",
+          "ans0",
+          "ans0"
+        ]
+      },
+      "question": "Give one concrete benefit of writing unit tests."
+    },
+    {
+      "counterbalanced": {
+        "distinct_winners": 2,
+        "order_sensitivity": 0.25,
+        "winners": [
+          "ans1",
+          "ans1",
+          "ans0",
+          "ans1"
+        ]
+      },
+      "fixed_order": {
+        "distinct_winners": 2,
+        "order_sensitivity": 0.25,
+        "winners": [
+          "ans1",
+          "ans1",
+          "ans0",
+          "ans1"
+        ]
+      },
+      "question": "Name one reason to use an index in a relational database."
+    }
+  ],
+  "note": "order_sensitivity = fraction of orderings whose winner != modal; lower is better",
+  "orderings": 4
+}

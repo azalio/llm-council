@@ -7,6 +7,7 @@ llm-council is an MCP (Model Context Protocol) server, FastAPI backend, and loca
 ## Scope
 
 **In Scope:**
+
 - MCP server implementation exposing council deliberation, async start/poll, conversation, model, and metrics tools
 - FastAPI backend and local React/Vite frontend for conversation-oriented use
 - Pluggable provider architecture (OpenRouter shipped; extension point for more) for LLM API calls
@@ -28,6 +29,7 @@ llm-council is an MCP (Model Context Protocol) server, FastAPI backend, and loca
   synthesis against the best available Stage 1 baseline
 
 **Out of Scope:**
+
 - Hosted or multi-tenant deployment
 - Custom LLM model hosting
 - Durable cross-process async task queue
@@ -37,9 +39,9 @@ llm-council is an MCP (Model Context Protocol) server, FastAPI backend, and loca
 ## Quality Goals
 
 1. **Reliability**: Multi-model deliberation reduces single-point-of-failure risk and provides diverse perspectives
-2. **Transparency**: Anonymous ranking ensures models evaluate responses objectively
-3. **Extensibility**: Modular provider architecture allows adding new API providers
-4. **Interoperability**: Standard MCP protocol enables integration with various MCP clients
+1. **Transparency**: Anonymous ranking ensures models evaluate responses objectively
+1. **Extensibility**: Modular provider architecture allows adding new API providers
+1. **Interoperability**: Standard MCP protocol enables integration with various MCP clients
 
 ## System Context
 
@@ -74,6 +76,7 @@ llm-council is an MCP (Model Context Protocol) server, FastAPI backend, and loca
 ```
 
 **External Dependencies:**
+
 - OpenRouter API (openrouter.ai) - API provider
 - MCP clients (Claude Desktop, Claude Code, OpenCode, Codex via local config)
 - Local browser users of the optional FastAPI + React/Vite UI
@@ -110,22 +113,22 @@ llm-council/
 
 ### Key Components
 
-| Component | Responsibility |
-|-----------|----------------|
-| `mcp_server/server.py` | MCP protocol handler, tool registration, request routing, heartbeat, and in-process async task store |
-| `backend/config.py` | Council model list, chairman model, API configuration, model-family inference, chairman heterogeneity validation |
-| `backend/agent_router.py` | Deterministic sparse routing policy for routine auto-standard runs and expansion decisions |
-| `backend/answer_cache.py` | First-turn cache eligibility, question similarity, candidate selection, chairman validation, cache-hit construction |
-| `backend/eval/judge.py` | Strict JSON judge evaluation for offline/operator quality measurement |
-| `backend/eval/answer_check.py` | Answer comparison helpers covered by focused tests |
-| `backend/eval/leakage_audit.py` | Prompt/data leakage audit helper covered by focused tests |
-| `backend/metrics.py` | Rolling process-local KPIs for council runs, degraded Stage 1 paths, answer-cache lookups, hit rates, validation outcomes, and lookup latency |
-| `backend/openrouter.py` | Provider-agnostic `query_model()`/`query_models_parallel()`; dispatches to the resolved provider via `backend/providers/registry.py` instead of a hardcoded branch |
-| `backend/providers/base.py` | `Provider` Protocol: structural contract (`build_request`, `parse_response`, `resolve_auth`) every provider implementation satisfies |
-| `backend/providers/registry.py` | `PROVIDER_REGISTRY` name→lazy-loader map and `resolve_provider()`, the single point where a provider module is actually loaded |
-| `backend/storage.py` | SQLite schema, WAL connection setup, conversation/message persistence, cache candidate queries |
-| `frontend/` | Optional browser UI for the FastAPI backend |
-| Council Logic | Stage orchestration: intent/reformulation → parallel query → ranking → critique/revision when needed → synthesis |
+| Component                       | Responsibility                                                                                                                                                     |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `mcp_server/server.py`          | MCP protocol handler, tool registration, request routing, heartbeat, and in-process async task store                                                               |
+| `backend/config.py`             | Council model list, chairman model, API configuration, model-family inference, chairman heterogeneity validation                                                   |
+| `backend/agent_router.py`       | Deterministic sparse routing policy for routine auto-standard runs and expansion decisions                                                                         |
+| `backend/answer_cache.py`       | First-turn cache eligibility, question similarity, candidate selection, chairman validation, cache-hit construction                                                |
+| `backend/eval/judge.py`         | Strict JSON judge evaluation for offline/operator quality measurement                                                                                              |
+| `backend/eval/answer_check.py`  | Answer comparison helpers covered by focused tests                                                                                                                 |
+| `backend/eval/leakage_audit.py` | Prompt/data leakage audit helper covered by focused tests                                                                                                          |
+| `backend/metrics.py`            | Rolling process-local KPIs for council runs, degraded Stage 1 paths, answer-cache lookups, hit rates, validation outcomes, and lookup latency                      |
+| `backend/openrouter.py`         | Provider-agnostic `query_model()`/`query_models_parallel()`; dispatches to the resolved provider via `backend/providers/registry.py` instead of a hardcoded branch |
+| `backend/providers/base.py`     | `Provider` Protocol: structural contract (`build_request`, `parse_response`, `resolve_auth`) every provider implementation satisfies                               |
+| `backend/providers/registry.py` | `PROVIDER_REGISTRY` name→lazy-loader map and `resolve_provider()`, the single point where a provider module is actually loaded                                     |
+| `backend/storage.py`            | SQLite schema, WAL connection setup, conversation/message persistence, cache candidate queries                                                                     |
+| `frontend/`                     | Optional browser UI for the FastAPI backend                                                                                                                        |
+| Council Logic                   | Stage orchestration: intent/reformulation → parallel query → ranking → critique/revision when needed → synthesis                                                   |
 
 ### API Provider Architecture
 
@@ -139,6 +142,7 @@ pointing at `API_PROVIDER=openrouter` as the fix, distinct from an unregistered/
 provider name (`KeyError`).
 
 **OpenRouter Provider:**
+
 - The only shipped provider
 - Single API key configuration
 - Standard OpenAI-compatible API format
@@ -153,11 +157,13 @@ no additional connectors are implemented by the current registry.
 ## Runtime Flows
 
 ### Stage 0: Mode, Intent, and Cache Gates
+
 Public callers can request `quick`, `standard`, `deep`, or `auto`. Auto mode uses cheap heuristics plus a short model classifier budget to choose the cheapest safe path. First-turn context-free auto requests are eligible for answer-cache lookup before the system spends council calls. `clarify_when_unclear=true` can return a clarification result instead of running the full council.
 
 `quick` mode bypasses the peer council and asks the chairman directly. Standard mode uses the three-stage council. Deep mode adds critique and revision stages before final synthesis. Low-confidence auto-standard runs can escalate into deep within the same run.
 
 ### Stage 1: Parallel Council Query
+
 Before Stage 1, API and MCP request paths check the answer cache when the
 request is a context-free first turn, `mode="auto"`, not `thorough`, not
 clarification-gated, and not `bypass_cache`. Token hits and strong semantic hits
@@ -182,6 +188,7 @@ User Question
 ```
 
 ### Stage 2: Anonymous Ranking
+
 ```
 All Responses
       │
@@ -206,9 +213,11 @@ requests do not escalate, so callers who deliberately cap cost keep the old
 3-stage boundary.
 
 ### Stage 2a/2b: Critique and Revision
+
 Deep runs and low-confidence auto-standard escalations add critique and revision stages. The revision policy is evidence-gated, and the resulting `stage2a`/`stage2b` payloads can be persisted alongside the normal stage metadata.
 
 ### Stage 3: Chairman Synthesis
+
 ```
 Responses + Rankings + Confidence Signal
          │
@@ -224,25 +233,27 @@ Responses + Rankings + Confidence Signal
 ```
 
 ### MCP Async Start/Poll
+
 For clients with short tool-call timeouts, `start_council_async` inserts a task record in an in-process dictionary and launches the same council execution through an `asyncio` background task. `poll_council_task` returns `pending`, `running`, `done`, or `error` and prunes the task store to the most recent 50 entries. This is a local convenience queue, not durable cross-process orchestration.
 
 ## Source of Truth
 
-| Data Element | Source |
-|--------------|--------|
-| Council Models | `backend/config.py` (static configuration) |
-| Low-confidence threshold | `backend/config.py` (`COUNCIL_LOW_CONFIDENCE_TOP1_THRESHOLD`) |
-| Confidence escalation | `backend/config.py` (`COUNCIL_CONFIDENCE_ESCALATION_ENABLED`) |
+| Data Element                        | Source                                                                                                                                                           |
+| ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Council Models                      | `backend/config.py` (static configuration)                                                                                                                       |
+| Low-confidence threshold            | `backend/config.py` (`COUNCIL_LOW_CONFIDENCE_TOP1_THRESHOLD`)                                                                                                    |
+| Confidence escalation               | `backend/config.py` (`COUNCIL_CONFIDENCE_ESCALATION_ENABLED`)                                                                                                    |
 | Judge rubric and generation options | `backend/config.py` (`DEFAULT_JUDGE_RUBRIC`, `JUDGE_MODEL`, `JUDGE_TEMPERATURE`, `JUDGE_TOP_P`, `JUDGE_MAX_TOKENS`, `JUDGE_TIMEOUT_SECONDS`, `JUDGE_ENSEMBLE_*`) |
-| Answer cache thresholds | `backend/config.py` (`ANSWER_CACHE_SIMILARITY_THRESHOLD`, `ANSWER_CACHE_SEMANTIC_HIT_THRESHOLD`, `ANSWER_CACHE_VALIDATION_THRESHOLD`) |
-| Answer cache metrics | `backend/metrics.py`, `GET /api/metrics/council`, MCP `get_council_metrics()` |
-| API Keys | Environment variables (`.env` file) |
-| Conversation History | SQLite database under `data/` via `backend/storage.py` |
-| Available Tools | `mcp_server/server.py` (`ask_council`, async start/poll, conversation, model, metrics tools) |
+| Answer cache thresholds             | `backend/config.py` (`ANSWER_CACHE_SIMILARITY_THRESHOLD`, `ANSWER_CACHE_SEMANTIC_HIT_THRESHOLD`, `ANSWER_CACHE_VALIDATION_THRESHOLD`)                            |
+| Answer cache metrics                | `backend/metrics.py`, `GET /api/metrics/council`, MCP `get_council_metrics()`                                                                                    |
+| API Keys                            | Environment variables (`.env` file)                                                                                                                              |
+| Conversation History                | SQLite database under `data/` via `backend/storage.py`                                                                                                           |
+| Available Tools                     | `mcp_server/server.py` (`ask_council`, async start/poll, conversation, model, metrics tools)                                                                     |
 
 ## Cross-cutting Concepts
 
 ### Configuration Management
+
 - Environment-based configuration via `python-dotenv`
 - Supported environment variables:
   - `API_PROVIDER`: `openrouter` (the only registered provider)
@@ -274,10 +285,12 @@ For clients with short tool-call timeouts, `start_council_async` inserts a task 
   chairman check before serving them.
 
 ### Error Handling
+
 - Timeout handling for API calls (configurable per request)
 - Graceful fallback when individual models fail
 
 ### Async Architecture
+
 - Async/await pattern for parallel model queries
 - `httpx` for async HTTP requests
 - `asyncio` for concurrent operation management
@@ -285,6 +298,7 @@ For clients with short tool-call timeouts, `start_council_async` inserts a task 
 - The MCP async task API is intentionally process-local: useful for Codex/OpenCode-style timeout limits, but not a durable job queue.
 
 ### Observability and Evaluation
+
 - `backend/observability.py` binds request IDs through context variables and emits structured JSON log payloads.
 - `backend/metrics.py` keeps rolling process-local council and answer-cache KPIs surfaced through FastAPI and MCP.
 - `backend/eval/` contains operator-facing judge, answer-check, and leakage-audit helpers.
@@ -293,6 +307,7 @@ For clients with short tool-call timeouts, `start_council_async` inserts a task 
 ## Deployment/Operations
 
 ### Runtime Requirements
+
 - Python 3.10+
 - `uv` package manager (recommended)
 - API keys for selected provider
@@ -300,25 +315,30 @@ For clients with short tool-call timeouts, `start_council_async` inserts a task 
 ### Deployment Configuration
 
 **Environment Variables (`.env`):**
+
 ```bash
 API_PROVIDER=openrouter
 OPENROUTER_API_KEY=sk-or-v1-...
 ```
 
 **MCP Server Launch:**
+
 ```bash
 uv run mcp_server/server.py
 ```
 
 **FastAPI + frontend launch:**
+
 ```bash
 ./start.sh
 ```
+
 The README documents backend `:8001` and frontend `:5173` for local UI use.
 
 ### MCP Client Configuration
 
 **Claude Desktop (`claude_desktop_config.json`):**
+
 ```json
 {
   "mcpServers": {
@@ -332,6 +352,7 @@ The README documents backend `:8001` and frontend `:5173` for local UI use.
 ```
 
 **Claude Code (`~/.claude/settings.json`):**
+
 ```json
 {
   "mcpServers": {
@@ -348,15 +369,15 @@ The README documents backend `:8001` and frontend `:5173` for local UI use.
 
 1. **Process-local Runtime State**: Metrics and async task records reset on process restart; async start/poll is not a durable queue.
 
-2. **Answer Cache Quality Risk**: Cache hit rate alone is not proof of quality. Thresholds need manual replay review and runtime validation monitoring, especially near semantic boundaries.
+1. **Answer Cache Quality Risk**: Cache hit rate alone is not proof of quality. Thresholds need manual replay review and runtime validation monitoring, especially near semantic boundaries.
 
-3. **Local Persistence Boundary**: Conversation storage is local SQLite under `data/`; it is not a multi-user durable service database.
+1. **Local Persistence Boundary**: Conversation storage is local SQLite under `data/`; it is not a multi-user durable service database.
 
-4. **Frontend/API/MCP Drift Risk**: The MCP tool surface, FastAPI backend, and frontend all expose related council behavior; request-path cache, mode, async, and metrics semantics should stay aligned when any surface changes.
+1. **Frontend/API/MCP Drift Risk**: The MCP tool surface, FastAPI backend, and frontend all expose related council behavior; request-path cache, mode, async, and metrics semantics should stay aligned when any surface changes.
 
-5. **No Security Review**: API key handling and network security are not documented as a dedicated threat model.
+1. **No Security Review**: API key handling and network security are not documented as a dedicated threat model.
 
-6. **Version 0.1.0**: Early-stage project; API and architecture may change significantly.
+1. **Version 0.1.0**: Early-stage project; API and architecture may change significantly.
 
 ## ADR Links
 
@@ -364,11 +385,14 @@ Information not available in current evidence.
 
 ## Freshness
 
-Last refreshed: 2026-06-26
+Last refreshed: 2026-07-14
 
-Refresh reason: Daily architecture maintenance. The previous document was older than the freshness window and missed current async MCP start/poll behavior, SQLite persistence details, FastAPI/frontend boundaries, structured observability, and evaluation/security helper surfaces.
+Refresh reason: Daily architecture maintenance. The repository has no commits
+after the initial OSS snapshot, so the runtime contract is unchanged; this
+refresh records current evidence and keeps the existing architecture content.
 
 Evidence used:
+
 - README.md
 - pyproject.toml
 - conftest.py
@@ -388,4 +412,8 @@ Evidence used:
 - scripts/answer_cache_replay.py
 - tests/
 
-Current delta captured: The council flow remains a Python async MCP/FastAPI orchestration service with optional frontend code, while async MCP start/poll, SQLite-backed conversation persistence, structured observability, answer-cache metrics, adaptive sparse routing, confidence escalation, and evaluation/security helpers are part of the current runtime contract.
+Current delta captured: The council flow remains a Python async MCP/FastAPI
+orchestration service with optional frontend code, while async MCP start/poll,
+SQLite-backed conversation persistence, structured observability, answer-cache
+metrics, adaptive sparse routing, confidence escalation, and
+evaluation/security helpers are part of the current runtime contract.
